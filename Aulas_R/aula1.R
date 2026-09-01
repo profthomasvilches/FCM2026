@@ -1,4 +1,3 @@
-
 # ! asdasdasdasd
 # ? asdasdassdasdasd
 # * sadfasdfasdfasdf
@@ -41,7 +40,7 @@ plot(x)
 # ---------------------
 
 
-dados <- read.csv("Pokemon_full.csv")
+dados <- read.csv("./Aulas_R/Pokemon_full.csv")
 dados
 
 glimpse(dados)
@@ -143,6 +142,9 @@ dados %>%
 #? Na prática, o dplyr faz isso:
 paste(dados$name, "- NOVO")
 
+dados %>%  pull(name) %>% 
+paste("- NOVO")
+
 #? o que significa que a função PRECISA aceitar um vetor
 
 #? Imagine que você queira criar uma função que testa se o valor de uma coluna
@@ -180,3 +182,16 @@ rowwise() %>%
         nova_var2 = mean(height)
     )
 
+# ? O codigo abaixo sai agrupado por linha
+
+dados %>%
+rowwise() %>%
+    mutate(
+        nova_var = f(height),
+        media = mean(height)
+    ) %>% 
+  ungroup() %>%
+    mutate(
+        nova_var2 = mean(height)
+    )%>% head(30) %>%
+        select(height, nova_var, media, nova_var2) 
