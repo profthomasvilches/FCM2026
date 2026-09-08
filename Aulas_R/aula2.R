@@ -293,3 +293,132 @@ ggplot(df_summary, aes(x = type, y = media_type, color = type))+
     )
 
 ggsave("./Aulas_R/outputs/grafico_barras.png", width = 4, height = 3)
+
+# ---------------------------------------------------
+
+
+df <- dados %>%
+  group_by(type) %>% 
+  summarise(
+    media_h = mean(height),
+    media_w = mean(weight)
+  ) 
+
+fator <- max(df$media_w)/max(df$media_h)
+fator
+
+df$media_h <- df$media_h*fator
+
+df %>% 
+  tidyr::pivot_longer(cols = c("media_h", "media_w"), names_to = "Coluna", values_to = "media") %>% 
+  ggplot()+
+    geom_col(aes(x = type, y = media, color = Coluna, fill = Coluna), position = position_dodge2())+
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Média do peso",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~./fator, name="Média do altura"),
+    expand = c(0,0)
+  )+
+  labs(x = "Tipo de pokemon")+
+  scale_color_brewer(palette = "Set1", labels = c("Média da altura", "Média do peso"), name = "Medida")+
+  scale_fill_brewer(palette = "Set1", labels = c("Média da altura", "Média do peso"), name = "Medida")+
+  theme_bw()+
+  theme(
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 14, angle = 45, hjust = 1.0),
+    legend.title = element_text(size = 15, face = "bold")
+  )
+
+
+#! Não fica bom!
+df %>% 
+  ggplot()+
+    geom_col(aes(x = type, y = media_h, color = "Altura", fill = "Altura"), position = position_dodge2())+
+    geom_col(aes(x = type, y = media_w, color = "Peso", fill = "Peso"), position = position_dodge2())+
+  scale_y_continuous(
+    # Features of the first axis
+    name = "Média do peso",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~./fator, name="Média do altura"),
+    expand = c(0,0)
+  )+
+  labs(x = "Tipo de pokemon")+
+  scale_color_brewer(palette = "Set1", labels = c("Média da altura", "Média do peso"), name = "Medida")+
+  scale_fill_brewer(palette = "Set1", labels = c("Média da altura", "Média do peso"), name = "Medida")+
+  theme_bw()+
+  theme(
+    axis.title = element_text(size = 18, face = "bold"),
+    axis.text.y = element_text(size = 14),
+    axis.text.x = element_text(size = 14, angle = 45, hjust = 1.0),
+    legend.title = element_text(size = 15, face = "bold")
+  )
+
+
+
+
+
+# ----------------------
+
+
+dados_clima <- read.csv("./Aulas_R/tabela_clima.csv")
+dados_clima
+
+glimpse(dados_clima)
+
+dados_clima$data  <- as.Date(dados_clima$data, "%d-%m-%Y")
+dados_clima$data  <- dmy(dados_clima$data)
+
+
+
+#? Fazer um painel para cada variável diferente
+
+
+#* ggarrange do pacote pubr::
+
+#* facet_wrap
+
+dados_clima %>% 
+    tidyr::pivot_longer(cols = c("T", "P", "Pluviosidade"), names_to = "Coluna", values_to = "valor") %>% 
+ggplot(aes(x = data, y = valor, color = Coluna))+
+    geom_point()+
+    geom_line()+
+    scale_color_manual(values = codigos[c(1,2,7)])+
+    facet_wrap(.~Coluna)+
+    theme_bw()+
+    theme(
+        axis.title = element_text(size = 18, face = "bold"),
+        axis.text.y = element_text(size = 14),
+        axis.text.x = element_text(size = 14, angle = 45, hjust = 1.0),
+        legend.title = element_text(size = 15, face = "bold"),
+        legend.position = "none"
+    )
+
+
+dados_clima %>% 
+    tidyr::pivot_longer(cols = c("T", "P", "Pluviosidade"), names_to = "Coluna", values_to = "valor") %>% 
+ggplot(aes(x = data, y = valor, color = Coluna))+
+    geom_point()+
+    geom_line()+
+    scale_color_manual(values = codigos[c(1,2,7)])+
+    #facet_wrap(.~Coluna)+
+    theme_bw()+
+    theme(
+        axis.title = element_text(size = 18, face = "bold"),
+        axis.text.y = element_text(size = 14),
+        axis.text.x = element_text(size = 14, angle = 45, hjust = 1.0),
+        legend.title = element_text(size = 15, face = "bold"),
+        legend.position = "none"
+    )
+
+
+
+# -----------------------------
+# Dica bonus
+
+codigos <- rcartocolor::carto_pal(12, "Bold")
+scales::show_col(codigos)
