@@ -1,0 +1,233 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+
+% --- PACOTES ESSENCIAIS ---
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usetikzlibrary{arrows.meta}
+\usepackage{fontawesome5}
+\usepackage{animate}
+
+\usepackage{lipsum}
+
+% --- DEIXAR BLOCOS ARREDONDADOS E COM SOMBRA ---
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+% --- PALETA DE CORES (Tons de Verde Acadêmico) ---
+\definecolor{darkgreen}{RGB}{90, 0, 0} %{58, 90, 64}     % Verde Escuro Principal (#3a5a40)
+\definecolor{sage}{RGB}{88, 129, 87}         % Verde Médio / Tom de Destaque (#588157)
+\definecolor{lightgreen}{RGB}{163, 177, 138} % Verde Claro para detalhes (#a3b18a)
+\definecolor{darker}{RGB}{52, 78, 65}        % Verde Profundo para contraste (#344e41)
+\definecolor{bglight}{RGB}{248, 250, 247}    % Fundo bem claro / Off-white (#f8faf7)
+
+% --- CONFIGURAÇÃO DO TEMA BEAMER ---
+\setbeamercolor{structure}{fg=darkgreen}
+\setbeamercolor{palette primary}{bg=darkgreen,fg=white}
+\setbeamercolor{palette secondary}{bg=sage,fg=white}
+\setbeamercolor{palette tertiary}{bg=darker,fg=white}
+\setbeamercolor{background canvas}{bg=bglight}
+
+% Elementos de texto e títulos
+\setbeamercolor{titlelike}{parent=structure, fg=darkgreen}
+\setbeamercolor{frametitle}{bg=darkgreen, fg=white}
+\setbeamercolor{normal text}{fg=black!85}
+
+% Configuração de Blocos (Teoremas, Exemplos, etc.)
+\setbeamercolor{block title}{bg=darkgreen, fg=white}
+\setbeamercolor{block body}{bg=lightgreen!15, fg=black!85}
+\setbeamercolor{block title example}{bg=sage, fg=white}
+\setbeamercolor{block body example}{bg=lightgreen!10, fg=black!85}
+
+% Estilo dos tópicos (bullets)
+\setbeamertemplate{items}[circle]
+\setbeamercolor{item}{fg=sage}
+
+% --- CUSTOMIZAÇÃO DO RODAPÉ (FOOTLINE) ---
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.1ex,center]{palette tertiary}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.1ex,center]{palette secondary}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.1ex,right]{palette primary}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vbox{}%
+}
+
+% Remove botões de navegação padrão do Beamer no canto inferior
+\setbeamertemplate{navigation symbols}{}
+
+% --- INFORMAÇÕES DA APRESENTAÇÃO ---
+
+\title[MDA ou Tratamento baseado em diagnóstico]{Tratamento baseado em diagnóstico ou tratamento em massa?}
+\subtitle{Um estudo com base em simulações de Monte Carlo aplicadas à esquistossomose}
+
+\author[T.N. Vilches]{Thomas N. Vilches}
+
+\institute[IBB-UNESP]{
+    Instituto de Biociências de Botucatu
+}
+\date{\today}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+
+\begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+        \centering
+          \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{figuras/logo-50-anos-medium.png}
+    \end{column}
+     \begin{column}{0.5\textwidth}
+        
+    
+     {\LARGE\bfseries\color{darkgreen}\inserttitle \par}
+                \vspace{0.3cm}
+                {\large\color{sage}\insertsubtitle \par}
+                
+                \vspace{1cm}
+                {\normalsize\bfseries \insertauthor \par}
+                \vspace{0.2cm}
+                {\small\itshape\color{black!70} \insertinstitute \par}
+                
+                \vspace{0.8cm}
+                {\footnotesize \insertdate \par}
+    \end{column}
+\end{columns}
+    
+\end{frame}
+
+\begin{frame}{Slide 1}
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        
+    \begin{itemize}
+        \item<1-> \lipsum[1][1]
+        \item<2> Item 2
+        \item<3-> Item 3
+        \item<4-> Item 4
+    \end{itemize}
+    \end{column}
+     \begin{column}{0.5\textwidth}
+        \only<2>{
+         \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{figuras/logo-50-anos-medium.png}
+        }
+        
+        \only<4>{
+        \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{bestpratices.jpeg}
+        }
+          
+    \end{column}
+\end{columns}
+
+    
+\end{frame}
+
+
+
+
+\begin{frame}{Slide 2}
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        
+    \begin{itemize}
+        \item<1-> \lipsum[1][1]
+        \item<2> Item 2
+        \item<3-> Item 3
+        \item<4-> Item 4
+    \end{itemize}
+    \end{column}
+     \begin{column}{0.5\textwidth}
+         \begin{tikzpicture}[
+        % contar para ele as estruras que eu tenho
+          bloco/.style={
+            rectangle, 
+            draw=darkgreen, 
+            fill=lightgreen!20, 
+            thick, 
+            rounded corners=4pt, 
+            align=center, 
+            text width=2cm, 
+            minimum height=1.5cm,
+            font=\small\bfseries\color{darker}
+        },
+        % Configuração das setas
+        seta/.style={
+            -{Stealth[scale=1.2]}, 
+            draw=sage, 
+            ultra thick
+        },
+        seta2/.style={
+            -{Bar[scale=2.0]}, 
+            draw=darker, 
+            ultra thick
+        },
+        bloco2/.style={
+            circle, 
+            draw=darkgreen, 
+            fill=lightgreen!20, 
+            ultra thick, 
+            rounded corners=4pt, 
+            align=center, 
+            text width=2cm, 
+            minimum height=1.5cm,
+            font=\small\bfseries\color{darker}
+        }
+         ]
+         \node[bloco] (b1) at (0,0) {Humanos\\ infectados};
+         \uncover<2->{
+         \node[bloco2] (b2) at (5,5) {Humanos\\ suscetíveis};
+         
+            \draw[seta2] (b1) -- node[above, sloped] {Legenda da seta} node[below, sloped] {Legenda da seta 2} (b2);
+         }
+         
+            
+         \end{tikzpicture}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Videozinho}
+    \centering
+     \animategraphics[loop, autoplay, width=0.2\textwidth]{2}{figuras/outputs/passo_}{001}{020}
+\end{frame}
+
+
+\begin{frame}{figuras jogadas}
+\begin{tikzpicture}[every node/.style={circle, minimum size=2.0cm}] % Reduzi ligeiramente para 2.0cm para caberem as 4 lado a lado confortavelmente
+            
+            % --- IMAGEM 1 (Início / Esquerda) ---
+            \node[path picture={
+                \node at (path picture bounding box.center){\includegraphics[width=2.0cm]{figuras/logo-50-anos-medium.png}};
+            }] (img1) at (0,0) {};
+            
+            % --- IMAGEM 2 (Sobe) ---
+            % xshift regula a distância lateral, yshift joga para cima
+            \node[yshift=0.7cm, xshift=2.0cm, path picture={
+               \node at (path picture bounding box.center)[yshift=-0.75cm]{\includegraphics[width=2.0cm]{bestpratices.jpeg}};
+            }] (img2) at (img1.center) {};
+            
+            % --- IMAGEM 3 (Desce) ---
+            % yshift negativo em relação à anterior para voltar à linha de base
+            % \node[yshift=-0.7cm, xshift=2.0cm, path picture={
+            %     \node at (path picture bounding box.center){\includegraphics[width=2.0cm]{figs/bruno.jpg}};
+            % }] (img3) at (img2.center) {};
+            
+        \end{tikzpicture}
+    
+\end{frame}
+
+\end{document}

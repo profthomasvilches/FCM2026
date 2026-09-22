@@ -1,0 +1,179 @@
+\documentclass[12pt, brazilian]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{pdflscape}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc} %  os acentos s\~ao digitados diretamente pelo teclado
+
+%\usepackage[style=abnt, backend=biber]{biblatex}
+%\addbibresource{referencias.bib}
+
+\usepackage[square]{natbib}
+
+\usepackage{amsmath, amssymb, mathtools} 
+
+\usepackage{float}
+
+\title{\textbf{Aula sobre Latex}}
+\author{Thomas Nogueira Vilches}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+
+Isso é uma fórmula matemática, ver Eq. \eqref{eq1}
+
+\begin{equation}
+    f(x) = x^2 + \frac{1}{x}\label{eq1}
+\end{equation}
+
+
+\begin{equation*}
+    f(x) = x^3 + \frac{1}{x^2}\label{eq1}
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{dota2.jpg}
+    \caption{Melhor jogo EVER}
+    \label{fig:dota2}
+\end{figure}
+
+\subsection{Sub da Intro}
+\lipsum[1-3]     % Insere apenas o 1º parágrafo
+
+Digitando normalmente $f(x) = \frac{1}{x}$
+
+
+\newpage
+
+\section{Best Pratices in Word}
+
+
+Citação de figura no meio do texto Figura \ref{fig:bestpratices} e Tabela \ref{tab:tabela1}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{bestpratices.jpeg}
+    \caption{Melhores práticas em Word}
+    \label{fig:bestpratices}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\caption{TABELA}\label{tab:tabela1}
+\begin{tabular}{lll}
+\hline
+\textbf{Parâmetros} & \multicolumn{1}{c}{\textbf{Descrição}}                        & \multicolumn{1}{c}{\textbf{Valor}} \\ \hline
+$\beta$             & \begin{tabular}[c]{@{}l@{}}Taxa de\\ transmissão\end{tabular} & 0.2                                \\
+$\gamma$            & \begin{tabular}[c]{@{}l@{}}Taxa de\\ recuperação\end{tabular} & 0.1                                \\ \hline
+\end{tabular}
+\end{table}
+
+
+\section{Figuras lado a lado}
+
+\lipsum[1-2]
+
+\begin{minipage}{0.45\linewidth}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{bestpratices.jpeg}
+    \caption{Melhores práticas em Word}
+    \label{fig:bestpratices2}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{bestpratices.jpeg}
+    \caption{Melhores práticas em Word}
+    \label{fig:bestpratices3}
+\end{figure}
+\end{minipage}
+
+
+Página inicial em formato retrato.
+
+
+\begin{landscape}
+\thispagestyle{empty} % Oculta o número da página que ficaria na lateral
+
+% Conteúdo da página (tabela, figura, etc.)
+
+\lipsum[1-3]
+
+\vfill
+\centerline{\thepage} % Coloca o número no rodapé inferior da folha visível
+\end{landscape}
+
+\lipsum[1-3]
+
+
+\section{Citações}
+
+% Citações no texto \textcite{einstein1905}. Como diz o livro Principios matemáticos da filosofia natural escrito por Issac Newton \parencite{newton1687}.
+
+% Citando livro \textcite{vilches2020investigacion}
+
+% Citando novos \textcite{moghadas_projecting_2020}, \textcite{morel_further_2008}
+
+
+Citações no texto \cite{einstein1905}. Como diz o livro Principios matemáticos da filosofia natural escrito por Issac Newton \cite{newton1687}.
+
+Citando livro \cite{vilches2020investigacion}
+
+Citando novos \cite{moghadas_projecting_2020}, \cite{morel_further_2008}
+
+
+% % --- BIBLIOGRAFIA ---
+ \begin{thebibliography}{9}
+
+\bibitem{einstein1905}
+{EINSTEIN, A. Zur elektrodynamik bewegter k{\"o}rper.
+\emph{Annalen der Physik}, 1905.}
+
+\bibitem{newton1687}
+{NEWTON, I. \emph{Philosophiae Naturalis Principia Mathematica}. [S.l.]: Joseph
+  Streater, 1687.}
+
+\bibitem{vilches2020investigacion}
+{VILCHES, L. \emph{La investigaci{\'o}n en comunicaci{\'o}n: m{\'e}todos y
+  t{\'e}cnicas en la era digital}. [S.l.]: Gedisa editorial, 2020.}
+
+\bibitem{moghadas_projecting_2020}
+{MOGHADAS, S.~M. et al. Projecting hospital utilization during the covid-19
+  outbreaks in the united states.
+\emph{Proceedings of the National Academy of Sciences}, v.~117, n.~16, p.
+  9122--9126, abr. 2020.
+ISSN 0027-8424, 1091-6490.
+Dispon{\'\i}vel em: $<$https://pnas.org/doi/full/10.1073/pnas.2004064117$>$.}
+
+\bibitem{morel_further_2008}
+{DRIESSCHE, P. V.~D.; WATMOUGH, J. Further {Notes} on the {Basic}
+  {Reproduction} {Number}. In:  MOREL, J.~M. et al. (Ed.). \emph{Mathematical
+  {Epidemiology}}. Berlin, Heidelberg: Springer Berlin Heidelberg, 2008.
+  v.~1945, p. 159--178.
+ISBN 978-3-540-78910-9 978-3-540-78911-6.
+Series Title: Lecture Notes in Mathematics.
+Dispon{\'\i}vel em:
+  $<$http://link.springer.com/10.1007/978-3-540-78911-6$_-$6$>$.}
+
+\end{thebibliography}
+
+%\bibliographystyle{abntex2-num} % Estilos natbib: plainnat, abbrvnat, unsrtnat
+%\bibliography{referencias}
+
+%comando para biblatex
+%\printbibliography     % Nome do arquivo .bib
+
+\end{document}
