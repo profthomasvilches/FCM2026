@@ -81,3 +81,76 @@ LEFT JOIN projetinho.ref_mun ON mun_idade_id = id_mun
 GROUP BY
 mun_idade_id, nome_mun
 HAVING nome_mun LIKE 'Botucatu%'
+
+
+
+
+---------------------------------------------------------------
+
+CREATE TABLE projetinho.ref_raca 
+( 
+ id_raca INT GENERATED ALWAYS AS IDENTITY,  
+ raca VARCHAR,  
+ UNIQUE (raca),
+ CONSTRAINT pk_ref_raca PRIMARY KEY (id_raca) 
+); 
+
+CREATE TABLE projetinho.tab_raca 
+( 
+ id_tabraca INT GENERATED ALWAYS AS IDENTITY,  
+ raca_id INT,  
+ mun_raca_id INT,  
+ N INT NOT NULL, 
+ CONSTRAINT pk_raca PRIMARY KEY (id_tabraca) 
+); 
+
+ALTER TABLE projetinho.tab_raca ADD FOREIGN KEY(raca_id) REFERENCES projetinho.ref_raca (id_raca);
+ALTER TABLE projetinho.tab_raca ADD FOREIGN KEY(mun_raca_id) REFERENCES projetinho.ref_mun (id_mun)
+
+
+
+
+
+CREATE TABLE projetinho.ref_renda 
+( 
+ id_renda INT GENERATED ALWAYS AS IDENTITY,  
+ renda VARCHAR,  
+ UNIQUE (renda), 
+ CONSTRAINT pk_renda PRIMARY KEY (id_renda)
+); 
+
+CREATE TABLE projetinho.tab_renda 
+( 
+ id_tab_renda INT GENERATED ALWAYS AS IDENTITY,  
+ renda_id INT,  
+ mun_renda_id INT,  
+ n INT NOT NULL, 
+ CONSTRAINT pk_ref_renda PRIMARY KEY (id_tab_renda) 
+); 
+
+ALTER TABLE projetinho.tab_renda ADD FOREIGN KEY(renda_id) REFERENCES projetinho.ref_renda (id_renda);
+ALTER TABLE projetinho.tab_renda ADD FOREIGN KEY(mun_renda_id) REFERENCES projetinho.ref_mun (id_mun)
+
+--------------------------------------------------
+-- Fazendo algumas queries
+
+SELECT codigo_ibge, nome_mun, grupo_idade, grupo_idade_id, SUM(n) FROM projetinho.tab_idade LEFT JOIN projetinho.ref_grupo_idade ON
+grupo_idade_id = id_gi LEFT JOIN projetinho.ref_mun ON mun_idade_id = id_mun
+GROUP BY codigo_ibge, nome_mun, grupo_idade, grupo_idade_id
+ORDER BY nome_mun, grupo_idade_id
+
+
+----------------------------------------------------
+WITH tabela_idade AS (
+    SELECT mun_idade_id, SUM(n) AS soma_idade FROM "projetinho"."tab_idade" WHERE grupo_idade_id > 12 GROUP BY mun_idade_id
+),
+tabela_renda AS (
+    SELECT mun_renda_id, SUM(n) AS soma_renda FROM "projetinho"."tab_renda"
+	WHERE renda_id = 12 OR renda_id BETWEEN 1 AND 4
+	GROUP BY mun_renda_id
+),
+tabela_total AS (
+    SELECT mun_idade_id as mun_total_id, SUM(n) AS soma_total FROM "projetinho"."tab_idade" GROUP BY mun_idade_id
+)
+SELECT mun_idade_id AS mun_id, soma_idade, soma_renda, soma_total FROM tabela_idade INNER JOIN tabela_renda ON
+mun_idade_id = mun_renda_id INNER JOIN tabela_total ON mun_idade_id = mun_total_id;
