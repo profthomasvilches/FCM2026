@@ -1,0 +1,11 @@
+renv::init()
+
+# salva o estado das dependencias
+renv::snapshot()
+
+renv::status()
+#! Verifica se há diferenças entre os pacotes instalados localmente e o arquivo renv.lock.
+
+renv::restore()
+Restaura o ambiente instalado para combinar exatamente com as versões salvas
+no arquivo renv.lock (útil ao mover o projeto para outro computador ou servidor).

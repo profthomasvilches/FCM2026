@@ -1,0 +1,113 @@
+/* Paleta de Cores (Tons de Verde):
+   #1b4332 - Verde Escuro (Texto Principal e Bordas de Destaque)
+   #2d6a4f - Verde Floresta (Rótulos e Botões Selecionados)
+   #40916c - Verde Médio (Destaques Secundários)
+   #d8f3dc - Verde Suave (Fundos de Seleção)
+   #f4fbf7 - Verde Menta Ultra Suave (Fundo dos Cartões)
+*/
+
+/* Estilização para o painel de filtros */
+.filter-card {
+  background-color: #8fdaa9;
+  border-radius: 12px;
+  border: 1px solid #8fdaa9;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(27, 67, 50, 0.06);
+}
+
+/* Estilização dos contêineres de gráficos */
+.plot-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #d8f3dc;
+  border-top: 4px solid #40916c; /* Detalhe verde no topo do gráfico */
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(27, 67, 50, 0.05);
+  margin-bottom: 15px;
+}
+
+/* Customização dos títulos dos filtros */
+.control-label {
+  color: #1b4332;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Estilização dos botões de rádio */
+.shiny-input-radiogroup {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #b7e4c7;
+  color: #2d6a4f;
+}
+
+/* Altera a cor de destaque dos botões de rádio marcados */
+.radio input[type="radio"]:checked + span {
+  color: #1b4332;
+  font-weight: bold;
+}
+
+/* Estilização da caixa de seleção (SelectInput) ao focar */
+.selectize-input.focus {
+  border-color: #40916c !important;
+  box-shadow: 0 0 0 0.2rem rgba(64, 145, 108, 0.25) !important;
+}
+
+/* Estilização do Título Principal */
+.titulo-principal h2 {
+  color: #1b4332; /* Verde escuro */
+  font-weight: bold; /* Negrito */
+  font-size: 36px; /* Tamanho da fonte grande */
+  margin-bottom: 20px; /* Espaço abaixo do título para respirar */
+}
+
+/* Contêiner principal do cabeçalho com Flexbox */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Título na esquerda, Logo na direita */
+  align-items: center; /* Centraliza verticalmente na mesma linha */
+  margin-top: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d8f3dc; /* Linha sutil verde embaixo do cabeçalho */
+}
+
+/* Estilo do Título */
+.titulo-app {
+  color: #1b4332; /* Verde escuro */
+  font-weight: bold;
+  font-size: 32px;
+  margin: 0; /* Remove margens padrão do h2 para alinhar perfeitamente */
+}
+
+.item {
+  color: #0c30be; /* Verde escuro */
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0; /* Remove margens padrão do h2 para alinhar perfeitamente */
+}
+/*
+.iris_var1-label {
+  color: #1b4332; /* Verde escuro 
+  font-weight: bold;
+  font-size: 32px;
+  margin: 0; 
+}
+*/
+
+/* Estilo do Logo */
+.logo-app {
+  height: 55px; /* Ajuste a altura ideal para o seu logo */
+  width: auto;  /* Mantém a proporção da imagem */
+}
+
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    font-size: 24px;
+    border-radius: 4px 4px 0 0;
+    color: #1b4332; 
+}
