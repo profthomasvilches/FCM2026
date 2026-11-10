@@ -1,0 +1,50 @@
+sudo apt update && sudo apt install -y docker-buildx    ----> instalar para o buildkit
+
+sudo DOCKER_BUILDKIT=1 docker build -t pokemon-shiny-app .
+
+sudo docker run -d -p 3838:3838 --name pokemon-shiny-container pokemon-shiny-app
+
+
+Comandos úteis de gerenciamento
+Verificar status do container:
+sudo docker ps
+
+Ver os logs em tempo real (para identificar erros no R, se houver):
+sudo docker logs -f pokemon-shiny-container
+
+Parar a execução do app:
+sudo docker stop pokemon-shiny-container
+
+Reiniciar o container parado:
+sudo docker start pokemon-shiny-container
+
+Remover o container para poder subir um novo:
+sudo docker rm -f pokemon-shiny-container
+
+Salvar
+docker save -o pokemon-shiny-app.tar pokemon-shiny-app
+
+---------------------------------------------------
+
+Receber
+# Se enviou compactado (.tar.gz):
+docker load -i pokemon-shiny-app.tar.gz
+
+# Se enviou apenas .tar:
+docker load -i pokemon-shiny-app.tar
+
+docker run -d -p 3838:3838 pokemon-shiny-app
+
+
+
+------------------------------------
+
+sudo docker login
+
+sudo docker tag pokemon-shiny-app thomasvilches/pokemon-shiny-app:latest
+
+sudo docker push thomasvilches/pokemon-shiny-app:latest
+
+
+-------------------------------------------------
+docker run -d -p 3838:3838 thomasvilches/pokemon-shiny-app:latest

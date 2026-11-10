@@ -1,4 +1,3 @@
-library(shiny)
 
 # Define a interface do usuário
 ui <- fluidPage(
@@ -144,6 +143,45 @@ ui <- fluidPage(
         )
 
       )
+
+    ),
+    tabPanel(
+        title = "Pokemons",
+        sidebarLayout(
+          sidebarPanel(
+            selectInput(
+              inputId = "poke_type",
+              label = "Select the Pokemon type:",
+              choices = c("All", poke_types),
+              selected = "All"
+            ),
+            selectizeInput( 
+              "selectSecType", 
+              label = "Select options below (secondary type):", 
+              choices = sort(unique(df_poke$secundary.type)), 
+              multiple = TRUE 
+            ),
+            radioButtons( 
+              inputId = "radioPoke", 
+              label = "Opções de Agrupamento:", 
+              choices = list( 
+                  "Agrupar" = 1, 
+                  "Desagrupado" = 2
+              ) 
+            )
+          ),
+          mainPanel(
+            fluidRow(
+              column(width = 4, uiOutput("box_n_poke")),
+              column(width = 4, uiOutput("box_av_attack")),
+              column(width = 4, uiOutput("box_av_def"))
+            ),
+            div(
+              class = "plot-card",
+              plotOutput(outputId = "plotPokemon")
+            )
+          )
+        )
 
     )
     

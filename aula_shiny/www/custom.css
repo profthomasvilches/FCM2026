@@ -111,3 +111,51 @@
     border-radius: 4px 4px 0 0;
     color: #1b4332; 
 }
+
+
+/* Container do Value Box */
+.custom-value-box {
+  background-color: #2d5a27;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #1e3d1a;
+  margin-bottom: 15px;
+}
+
+/* Ícone */
+.custom-value-box-icon {
+  font-size: 2.2rem;
+  color: #d8f3dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+}
+
+/* Área de texto */
+.custom-value-box-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título */
+.custom-value-box-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+/* Valor / Número */
+.custom-value-box-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.1;
+}

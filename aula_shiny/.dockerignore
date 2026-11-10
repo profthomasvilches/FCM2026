@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+renv/library
+renv/python
+renv/staging
+.git
